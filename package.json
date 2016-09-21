@@ -1,0 +1,22 @@
+{
+  "name": "coap-lab",
+  "version": "1.0.0",
+  "description": "coap - node.js practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tz70s/CoAP-lab.git"
+  },
+  "author": "Tzu-Chiao Yeh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tz70s/CoAP-lab/issues"
+  },
+  "homepage": "https://github.com/tz70s/CoAP-lab#readme",
+  "dependencies": {
+    "coap": "^0.17.0"
+  }
+}
