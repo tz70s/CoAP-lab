@@ -1,7 +1,7 @@
 # CoAP-lab
 CoAP - Node.js practice
 
-## Installation
+### Installation
 
 ``` Bash
 # Save dependencies
@@ -10,15 +10,15 @@ npm install coap --save
 npm install coap
 ```
 
-## Exp1 - simple coap client-server architecture
+### Exp1 - simple coap client-server architecture
 
 Basic practice of simple coap node api
 
-## Exp2 - observation mode
+### Exp2 - observation mode
 
 Practice of observation mode
 
-## Exp3 - multicast
+### Exp3 - multicast
 
 Practice of multicast
 
