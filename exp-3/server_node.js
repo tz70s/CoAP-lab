@@ -73,6 +73,11 @@ server.on('request',function(req,res) {
 	var count = 0;
 	var device = req.url.split('/')[1] + '';
 	
+	if(device === 'close') {
+		server.close();
+		return ;
+	}
+
 	var data_pack = new System_Descript(device, init(device));
 	
 	if(data_pack.data === {}) {
