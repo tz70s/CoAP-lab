@@ -3,12 +3,12 @@ var req = [
 		coap.request({
 				host: 'localhost',
 				observe: true,
-				pathname: '/node2'
+				pathname: '/os_device'
 			}),
 		coap.request({
 			host: 'localhost',
 			observe: true,
-			pathname:'/node1'
+			pathname:'/net_device'
 	})];
 
 
@@ -22,7 +22,7 @@ for(var i = 0; i < req.length; i++ ) {
 		
 			data_count++;
 
-			console.log('' + data);
+			console.log(JSON.parse(data));
 			if(data_count === 10) {
 				res.close();
 			}
