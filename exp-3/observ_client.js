@@ -15,7 +15,18 @@ var req = [
 			host: 'localhost',
 			observe: true,
 			pathname:'/net_device'
-	})];
+			}),
+		coap.request({
+			host: '192.168.1.105',
+			observe: true,
+			pathname: '/os_device'
+			}),
+		coap.request({
+			host: '192.168.1.105',
+			observe: true,
+			pathname: '/net_device'
+			}),
+];
 
 
 for(var i = 0; i < req.length; i++ ) {

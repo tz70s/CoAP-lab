@@ -21,10 +21,11 @@ System_Descript.prototype.update = function() {
 
 	switch(this.device) {
 		case 'os_device':
-			this.data.cpu_usage = os.loadavg();
+			this.data.cpu_usage = os.loadavg()[0];
+			this.data.free_memory = os.freemem() / os.totalmem();
 			break;
 		case 'net_device':
-			this.data = os.networkInterfaces()['eth0'] || os.networkInterfaces()['wlp2s0'];
+			this.data = os.networkInterfaces()['eth0'] || (os.networkInterfaces()['wlan0'] || os.networkInterfaces()['wlp2s0']);
 			break;
 		default:
 			console.log('Cant update');
@@ -53,11 +54,12 @@ function init(device) {
 				cpu : os.cpus()[0].model,
 				arch : os.arch(),
 				osplatform : os.platform(),
-				cpu_uasge : os.loadavg(),
+				cpu_usage : os.loadavg()[0],
+				free_memory : os.freemem() / os.totalmem(),
 			}
 			break;
 		case 'net_device':
-			obj = os.networkInterfaces()['eth0'] || os.networkInterfaces()['wlp2s0'];
+			obj = os.networkInterfaces()['eth0'] || ( os.networkInterfaces()['wlan0'] || os.networkInterfaces()['wlp2s0'] );
 			break;
 		default:
 			console.log('Unknown device');
