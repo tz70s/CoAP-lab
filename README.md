@@ -18,7 +18,6 @@ Basic practice of simple coap node api
 
 Practice of observation mode
 
-### Exp3 - multicast
+### Exp3 - Multiple devices monitoring based on CoAP observation mode
 
-Practice of multicast
-
+The experiment based on CoAP observation mode to retrieve data : os information and network connection. The architecture is a CoAP client and multiple server-node ( sensing device ).
