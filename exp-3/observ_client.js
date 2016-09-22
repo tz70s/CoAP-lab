@@ -1,3 +1,9 @@
+/*
+ * Observe Client
+ * 
+ *
+ */
+
 var coap = require('coap');
 var req = [
 		coap.request({
@@ -23,7 +29,7 @@ for(var i = 0; i < req.length; i++ ) {
 			data_count++;
 
 			console.log(JSON.parse(data));
-			if(data_count === 10) {
+			if(data_count === JSON.parse(data).counter) {
 				res.close();
 			}
 		});
