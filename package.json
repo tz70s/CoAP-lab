@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/tz70s/CoAP-lab#readme",
   "dependencies": {
-    "coap": "^0.17.0"
+    "coap": "^0.17.0",
+    "express": "^4.14.0"
   }
 }

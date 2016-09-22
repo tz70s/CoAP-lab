@@ -1,10 +1,9 @@
 /*
- * Observe Client
- * 
+ * Observe Client and Express Framework
  *
  */
 
-var coap = require('coap');
+const coap = require('coap');
 var req = [
 		coap.request({
 				host: 'localhost',
@@ -49,3 +48,5 @@ for(var i = 0; i < req.length; i++ ) {
 	
 	req[i].end();
 }
+
+
