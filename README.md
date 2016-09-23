@@ -22,14 +22,15 @@ Practice of observation mode
 
 The experiment based on CoAP observation mode to retrieve data : os information and network connection. The architecture is a CoAP client and multiple server-node ( sensing device ).
 
-External installation
+* External installation
 
-```Bash
+``` Bash
 npm install socket.io --save
 ```
 
-Execute
-```
+* Execute
+
+``` Bash
 # on devices
 node server_node.js
 
