@@ -25,7 +25,8 @@ System_Descript.prototype.update = function() {
 			this.data.free_memory = os.freemem() / os.totalmem();
 			break;
 		case 'net_device':
-			this.data = os.networkInterfaces()['eth0'] || (os.networkInterfaces()['wlan0'] || os.networkInterfaces()['wlp2s0']);
+			var tmp_obj	= os.networkInterfaces()['eth0'] || (os.networkInterfaces()['wlan0'] || os.networkInterfaces()['wlp2s0']);
+			this.data = tmp_obj[0];
 			break;
 		default:
 			console.log('Cant update');
@@ -36,17 +37,17 @@ System_Descript.prototype.set_observ_time = function() {
 	switch(this.device) {
 		case 'os_device' :
 			this.observ_time = 2000;
-			this.counter = 10;
+			this.counter = 100;
 			break;
 		case 'net_device':
-			this.observ_time = 10000;
-			this.counter = 3;
+			this.observ_time = 5000;
+			this.counter = 50;
 			break;
 	}
 }
 
 function init(device) {
-
+	//console.log(os.networkInterfaces()['wlp2s0'][0]);
 	var obj = {};
 	switch(device) {
 		case 'os_device':
@@ -59,7 +60,8 @@ function init(device) {
 			}
 			break;
 		case 'net_device':
-			obj = os.networkInterfaces()['eth0'] || ( os.networkInterfaces()['wlan0'] || os.networkInterfaces()['wlp2s0'] );
+			var tmp_obj = os.networkInterfaces()['eth0']|| ( os.networkInterfaces()['wlan0'] || os.networkInterfaces()['wlp2s0'] );
+			obj = tmp_obj[0];
 			break;
 		default:
 			console.log('Unknown device');

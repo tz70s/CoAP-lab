@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
+	</head>
+
+	<body>
+		<div class = "container">
+			<div class = "col-md-10">
+			<div class = "page-header">
+				<h1><p class = "text-center">Device Monitoring based on CoAP and Node.js</p></h1>
+			</div>
+			<div class="row">
+					<h5>
+					<table class = "table table-bordered">
+						<tr class ="active">
+							<td><p class = "text-center"><strong>@</strong></p></td>
+							<td class = "success"><p class = "text-center"><strong>OS Information</strong></p></td>
+							<td><p class = "text-center"><strong>@</strong></p></td>
+							<td class = "info"><p class = "text-center"><strong>Network Interface</strong></p></td>
+						</tr>
+					
+					<script>
+
+						var socket = io.connect();
+						socket.on('message', function(message) {
+
+							if(message) {
+								console.log(message.index);
+								if(message.d.device === 'os_device') {
+									$('#os_packet_time').text(message.d.packet_time.replace(/T/, ' ').replace(/\..+/,''));
+									$('#os_cpu').text(message.d.data.cpu);
+									$('#os_arch').text(message.d.data.arch);
+									$('#os_platform').text(message.d.data.osplatform);
+									$('#os_cpuusage').text(message.d.data.cpu_usage);
+									$('#os_freememory').text(message.d.data.free_memory);
+
+									console.log(message.d.device + ' ' + message.d.packet_time);
+								} else if (message.d.device === 'net_device') {
+									$('#net_packet_time').text(message.d.packet_time.replace(/T/, ' ').replace(/\..+/,''));
+									$('#net_address').text(message.d.data.address);
+									$('#net_netmask').text(message.d.data.netmask);
+									$('#net_family').text(message.d.data.family);
+									$('#net_mac').text(message.d.data.mac);
+
+									console.log(message.d.device + ' ' + message.d.packet_time);
+								}
+							}
+						});
+					</script>
+					<tr class = "active">
+						<td><p class = "text-center"><strong>Packet Time</strong></p></td>
+						<td><p class = "text-center" id="os_packet_time"><strong></strong></p></td>
+						<td><p class = "text-center"><strong>Packet Time</strong></p></td>
+
+						<td><p class = "text-center" id="net_packet_time"><strong></strong></p></td>
+					</tr>
+					<tr class = "active">
+						<td><p class = "text-center"><strong>CPU Model</strong></p></td>
+						<td><p class = "text-center" id="os_cpu"><strong></strong></p></td>
+						<td><p class = "text-center"><strong>IP Address</strong></p></td>
+
+						<td><p class = "text-center" id="net_address"><strong></strong></p></td>
+					</tr>
+					<tr class = "active">
+						<td><p class = "text-center"><strong>OS Arch</strong></p></td>
+						<td><p class = "text-center" id="os_arch"><strong></strong></p></td>
+						<td><p class = "text-center"><strong>Net Mask</strong></p></td>
+						<td><p class = "text-center" id="net_netmask"><strong></strong></p></td>
+					</tr>
+					<tr class = "active">
+						<td><p class = "text-center"><strong>OS Platform</strong></p></td>
+						<td><p class = "text-center" id="os_platform"><strong></strong></p></td>
+						<td><p class = "text-center"><strong>Net Family</strong></p></td>
+						<td><p class = "text-center" id="net_family"><strong></strong></p></td>
+					</tr>
+					<tr class = "active">
+						<td><p class = "text-center"><strong>CPU Use Load(1min)</strong></p></td>
+						<td><p class = "text-center" id="os_cpuusage"><strong></strong></p></td>
+						<td><p class = "text-center"><strong>Net MAC Address</strong></p></td>
+						<td><p class = "text-center" id="net_mac"><strong></strong></p></td>
+					</tr>
+					<tr class = "active">
+						<td><p class = "text-center"><strong>Free Memory Rate</strong></p></td>
+						<td><p class = "text-center" id="os_freememory"><strong></strong></p></td>
+						<td><p class = "text-center" id="packet_time"><strong></strong></p></td>
+					</tr>
+
+					</table>
+				</h5>
+			</div>
+			</div>
+			<div class = "col-md-2">
+			</div>
+
+	<body>
+
+</html>
