@@ -19,31 +19,31 @@
 					console.log(message.index);
 					switch(message.index) {
 						case '192.168.1.105':
-							class_select = '#packet1.';
+							class_select = '.packet1 ';
 							break;
 						case '192.168.1.105':
-							class_select = '#packet2.';
+							class_select = '.packet2 ';
 							break;
 						case '192.168.1.105':
-							class_select = '#packet3.';
+							class_select = '.packet3 ';
 							break;
 					}
 
 					if(message.d.device === 'os_device') {
-						$(class_select + 'os_packet_time').text(message.d.packet_time.replace(/T/, ' ').replace(/\..+/,''));
-						$(class_select + 'os_cpu').text(message.d.data.cpu);
-						$(class_select + 'os_arch').text(message.d.data.arch);
-						$(class_select + 'os_platform').text(message.d.data.osplatform);
-						$(class_select + 'os_cpuusage').text(message.d.data.cpu_usage);
-						$(class_select + 'os_freememory').text(message.d.data.free_memory);
+						$(class_select + '#os_packet_time').text(message.d.packet_time.replace(/T/, ' ').replace(/\..+/,''));
+						$(class_select + '#os_cpu').text(message.d.data.cpu);
+						$(class_select + '#os_arch').text(message.d.data.arch);
+						$(class_select + '#os_platform').text(message.d.data.osplatform);
+						$(class_select + '#os_cpuusage').text(message.d.data.cpu_usage);
+						$(class_select + '#os_freememory').text(message.d.data.free_memory);
 
 						console.log(message.d.device + ' ' + message.d.packet_time);
 					} else if (message.d.device === 'net_device') {
-						$(class_select + 'net_packet_time').text(message.d.packet_time.replace(/T/, ' ').replace(/\..+/,''));
-						$(class_select + 'net_address').text(message.d.data.address);
-						$(class_select + 'net_netmask').text(message.d.data.netmask);
-						$(class_select + 'net_family').text(message.d.data.family);
-						$(class_select + 'net_mac').text(message.d.data.mac);
+						$(class_select + '#net_packet_time').text(message.d.packet_time.replace(/T/, ' ').replace(/\..+/,''));
+						$(class_select + '#net_address').text(message.d.data.address);
+						$(class_select + '#net_netmask').text(message.d.data.netmask);
+						$(class_select + '#net_family').text(message.d.data.family);
+						$(class_select + '#net_mac').text(message.d.data.mac);
 
 						console.log(message.d.device + ' ' + message.d.packet_time);
 					}
