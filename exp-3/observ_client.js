@@ -25,27 +25,91 @@ var req = [
 			pathname: '/net_device'
 			}),
 ];
-var obj_queue = [];
 
-for(var i = 0; i < req.length; i++ ) {
-	
-	var host_addr = req[i].url.host;	
-	req[i].on('response', function(res) {
-			
+var obj_queue = [];
+var use_flag = 0;
+
+
+req[0].on('response', function(res) {
+		
 		var data_count = 0;
 			
 		res.on('data',function(data) {
+			
 			data_count++;
-			console.log({index:host_addr, d : JSON.parse(data)});
-			obj_queue.push({ index:host_addr, d : JSON.parse(data)});
+			//console.log({ index:0, d : JSON.parse(data) });
+			
+			//while(use_flag === 1);
+			//use_flag = 1;
+			obj_queue.push({ index:0, d : JSON.parse(data)});
+			//use_flag = 0;
 			if(data_count === JSON.parse(data).counter) {
 				res.close();
 			}
 		});
 	
 	});
-	req[i].end();
-}
+
+req[0].end();
+
+req[1].on('response', function(res) {
+		
+		var data_count = 0;
+			
+		res.on('data',function(data) {
+			
+			data_count++;
+			//console.log({ index:0, d : JSON.parse(data) });
+			
+			obj_queue.push({ index:0, d : JSON.parse(data)});
+			if(data_count === JSON.parse(data).counter) {
+				res.close();
+			}
+		});
+	
+	});
+
+req[1].end();
+
+req[2].on('response', function(res) {
+		
+		var data_count = 0;
+			
+		res.on('data',function(data) {
+			
+			data_count++;
+			//console.log({ index:1, d : JSON.parse(data) });
+			
+			obj_queue.push({ index:1, d : JSON.parse(data)});
+			if(data_count === JSON.parse(data).counter) {
+				res.close();
+			}
+		});
+	
+	});
+
+req[2].end();
+
+req[3].on('response', function(res) {
+		
+		var data_count = 0;
+			
+		res.on('data',function(data) {
+			
+			data_count++;
+			//console.log({ index:1, d : JSON.parse(data) });
+			
+			obj_queue.push({ index:1, d : JSON.parse(data)});
+			if(data_count === JSON.parse(data).counter) {
+				res.close();
+			}
+		});
+	
+	});
+
+req[3].end();
+
+
 
 /*
  *
@@ -93,12 +157,13 @@ serv_io.sockets.on('connection', function(socket) {
 	var tmp = {};
 
 	setInterval(function() {
-		if(obj_queue[0] !== {} && obj_queue[0] !== tmp)  {
+		if(obj_queue[0] && obj_queue[0] !== tmp)  {
 			socket.emit('message', obj_queue[0]);
+			console.log(obj_queue[0].d);
 			tmp = obj_queue[0];
 			obj_queue.shift();
 		}
-	},500);
+	},0);
 });
 
 
